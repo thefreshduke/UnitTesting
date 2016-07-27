@@ -11,9 +11,13 @@ import XCTest
 
 class UnitTestingTests: XCTestCase {
     
+    var calculator: Calculator?
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        calculator = Calculator()
     }
     
     override func tearDown() {
@@ -24,9 +28,12 @@ class UnitTestingTests: XCTestCase {
     func testAdd() {
         let expected = 10
         
-        let calculator = Calculator()
-        let result = calculator.add(4, y: 6)
-        
-        XCTAssertEqual(expected, result)
+        if let actualCalculator = calculator {
+            let result = actualCalculator.add(4, y: 6)
+            XCTAssertEqual(expected, result)
+        }
+        else {
+            XCTFail()
+        }
     }
 }
